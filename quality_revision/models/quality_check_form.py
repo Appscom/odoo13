@@ -15,13 +15,13 @@ class QualityCheckInherit(models.Model):
     
     @api.depends('point_id')
     def _compute_values(self):
-        
-        self.control_point = self.point_id.name
-        self.quality_point_type = self.point_id.test_type_id.name
-        self.norm = self.point_id.norm
-        self.norm_unit = self.point_id.norm_unit
-        self.tolerance_min = self.point_id.tolerance_min
-        self.tolerance_max = self.point_id.tolerance_max
+        for i in self:
+            i.control_point = i.point_id.name
+            i.quality_point_type = i.point_id.test_type_id.name
+            i.norm = i.point_id.norm
+            i.norm_unit = i.point_id.norm_unit
+            i.tolerance_min = i.point_id.tolerance_min
+            i.tolerance_max = i.point_id.tolerance_max
         
         
     
