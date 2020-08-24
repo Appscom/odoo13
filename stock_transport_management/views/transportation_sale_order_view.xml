@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="transportation_purchase_order_form_view" model="ir.ui.view">
+            <field name="name"> Purchaseorderinherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+             <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_approve']" position="after">
+                    <field name="transportation_name"/>
+                    <field name="freight_term"/>
+                    <field name="g_lr_no"/>
+                    <field name="g_lr_date"/>
+                    <field name="vehicle_no"/>
+                </xpath>
+             </field>
+        </record>
+    </data>
+</odoo>

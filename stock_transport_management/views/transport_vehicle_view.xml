@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="transport_management_vehicle_creation_form_view">
+        <field name="name">Vehicles</field>
+        <field name="model">sale.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <field name="vehicle_image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" style="width:50%%"/>
+                            
+                        </h1>
+                        <seperator></seperator>
+                        <label for="freight_term"/>
+                        <h2>
+                            <field name="freight_term" style="width:25%%"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="supplier_id"/>
+                           <field name="vehicle_address"/>
+                            <field name="vehicle_city"/>
+                            <field name="country_id"/>
+                        </group>
+                        <group>
+                            <field name="mob_no"/>
+                           <!-- <field name="vehicle_zip"/>
+                            <field name="state_id"/>-->
+                            <field name="active_available" readonly="1"/>
+                        </group>
+                      </group>
+                      <notebook>
+                        <page string="Freight Line Details">
+                            <field name="transportable_line_ids">
+                                <tree editable="bottom" create ="true">
+                                    <field name="name"/>
+                                    <field name="transportable_uom_id"/>
+                                    <!--<field name="product_qty"/>-->
+                                    <field name="product_value"/>
+                                    <field name="product_weight"/>
+                                    <field name="lr_charge"/>
+                                    <field name="rate"/>
+                                    <!--<field name="amount_highway_tolls"/>
+                                    <field name="price_subtotal"/>
+                                    <field name="amount_untaxed"/>
+                                    <field name="amount_tax"/>
+                                    <field name="amount_total"/>-->
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <div >
+                                    <label for="amount_total"/>
+                                </div>
+                                <field name="amount_total" nolabel="1" widget="monetary"/>
+                            </group>
+                        </page>
+                     </notebook>
+                    
+                </sheet>
+            </form>
+        </field>
+        </record>
+
+       <!--<record id="tms_waybill_tree_view" model="ir.ui.view">
+            <field name="name">TMS</field>
+            <field name="model">tms.waybill.line</field>
+            <field name="arch" type="xml">
+            <tree>
+               <field name="name"/>
+               <field name="transportable_uom_id"/>
+               <field name="unit_price"/>
+               <field name="price_subtotal"/>
+               <field name="product_qty"/>
+               <field name="product_volume"/>
+               <field name="product_weight"/>
+               <field name="amount_freight"/>
+               <field name="amount_highway_tolls"/>
+               <field name="amount_untaxed"/>
+               <field name="amount_tax"/>
+               <field name="amount_total"/>
+               </tree> 
+            </field>
+        </record>
+
+        <record id="tms_waybill_form_view" model="ir.ui.view">
+            <field name="name">TMS</field>
+            <field name="model">tms.waybill.line</field>
+            <field name="arch" type="xml">
+            <form>
+               <group>
+               <field name="name"/>
+               <field name="transportable_uom_id"/>
+               <field name="unit_price"/>
+               <field name="price_subtotal"/>
+               <field name="product_qty"/>
+               <field name="product_volume"/>
+               <field name="product_weight"/>
+               <field name="amount_freight"/>
+               <field name="amount_highway_tolls"/>
+               <field name="amount_untaxed"/>
+               <field name="amount_tax"/>
+               <field name="amount_total"/>
+               </group>
+              </form> 
+            </field>
+        </record>
+
+       <record id="tms_waybill_action" model="ir.actions.act_window">
+            <field name="name">Freight Details</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tms.waybill.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="vehicle_template_kanban_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to define a new Vehicle.
+                </p>
+            </field>
+        </record>-->
+
+        <record id="vehicle_template_action" model="ir.actions.act_window">
+            <field name="name">Vehicle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.vehicle</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="view_type">form</field>-->
+            <!-- <field name="view_id" ref="vehicle_template_kanban_view"/>-->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to define a new Vehicle.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="main_transportation_vehicle_creation_menu" name="Vehicles"  parent="purchase.menu_purchase_config" action="vehicle_template_action" sequence="2"/>
+
+    </data>
+</odoo>
