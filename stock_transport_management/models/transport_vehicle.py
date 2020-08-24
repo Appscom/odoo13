@@ -47,11 +47,12 @@ class VehicleCreation(models.Model):
         for rec in self:
             temp = 0.0
             for line in rec.transportable_line_ids:
-                temp += line.rate
+                if line.rate > 0:
+                    temp += line.rate
                 
-            rec.update({
-                'amount_total': temp,
-            })
+                rec.update({
+                    'amount_total': temp,
+                })
   
     
 class TmsWaybillLine(models.Model):
