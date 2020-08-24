@@ -56,6 +56,9 @@
                         <field name="dest_location_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                        </page>
+                        <page string="Transportation Details">
+                         <field name="transportation_ids"/>
+                     </page>
                      </notebook> </sheet>
                  </form>
             </field>
