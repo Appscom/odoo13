@@ -42,6 +42,12 @@ class GateEntryIn(models.Model):
         'stock.location', "Destination Location")
     notes = fields.Text('Notes')
     
+    transportation_ids = fields.One2many('vehicle.status', compute='fetch_details', string="Transportation Details")
+    
+    def fetch_details(self):
+        order = self.env['vehicle.status'].search([('purchase_order', '=', self.stock_picking_id.purchase_id.name)])
+        self.transportation_ids = order
+    
     ## Auto sequence
     @api.model
     def create (self,vals):
