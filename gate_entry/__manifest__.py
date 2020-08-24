@@ -6,7 +6,7 @@
     'version': '13.0.1.0.0',
     'description': """Generating Gate entry slip in delivery orders and receipts""",
     'category': 'Inventory',
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock','stock_transport_management'],
     'license': 'LGPL-3',
     'data': [
         'views/gate_in_views.xml',
