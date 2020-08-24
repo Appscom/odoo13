@@ -101,7 +101,7 @@ class TmsWaybillLine(models.Model):
             if (rec.product_value and rec.product_weight) > 0:
                 if rec.transportable_uom_id.name == 'LCV':
                     rec.rate = rec.product_value / rec.product_weight
-                    print(rec.rate)
+                    #print(rec.rate)
                 else:
                     rec.rate
     
