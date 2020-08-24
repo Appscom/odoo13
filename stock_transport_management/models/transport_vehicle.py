@@ -40,15 +40,21 @@ class VehicleCreation(models.Model):
         'tms.waybill.line', 'waybill_id', string="Transportable")
     amount_total = fields.Float(
         compute='_amount_all',
-        string='Total', store=True)
+        string='Total')
         
-    @api.depends('transportable_line_ids.rate')
+    @api.depends()
     def _amount_all(self):
         for rec in self:
             temp = 0.0
             for line in rec.transportable_line_ids:
                 if line.rate > 0:
                     temp += line.rate
+                elif line.lr_rate > 0 :
+                    temp += line.lr_rate
+                elif line.rate > 0 and line.lr_rate > 0:
+                    temp += sum(line.lr_rate,line_rate)
+                else:
+                    temp=0
                 
                 rec.update({
                     'amount_total': temp,
@@ -89,20 +95,24 @@ class TmsWaybillLine(models.Model):
     amount_total = fields.Float(
         compute='_compute_amount_total',
         string='Total', store=True)
+    lr_rate = fields.Float(
+        default=0.0,compute='_compute_rate', string='LR Rate (Kg)')
     rate = fields.Float(
-        default=0.0,compute='_compute_rate', string='Rate (Kg)',readonly=False )
+        default=0.0, string='Rate (Kg)')
     price_subtotal = fields.Float(
         #compute='_compute_amount_line',
         string='Subtotal')
+    
     
     @api.depends()
     def _compute_rate(self):
         for rec in self:
             if (rec.product_value and rec.product_weight) > 0:
                 if rec.transportable_uom_id.name == 'LCV':
-                    rec.rate = rec.product_value / rec.product_weight
+                    rec.lr_rate = rec.product_value / rec.product_weight
                     #print(rec.rate)
-                else:
-                    rec.rate
-    
+            else:
+                rec.lr_rate =0
+                
+            
     
