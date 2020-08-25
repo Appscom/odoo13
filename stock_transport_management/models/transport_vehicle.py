@@ -107,7 +107,7 @@ class TmsWaybillLine(models.Model):
     @api.depends()
     def _compute_rate(self):
         for rec in self:
-            if (rec.product_value and rec.product_weight) > 0:
+            if (rec.product_value and rec.product_weight) > 0 and rec.transportable_uom_id.name == 'LCV':
                 if rec.transportable_uom_id.name == 'LCV':
                     rec.lr_rate = rec.product_value / rec.product_weight
                     #print(rec.rate)
