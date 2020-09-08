@@ -37,11 +37,18 @@ class VehicleStatus(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancel'),
     ], string='Status', readonly=True, index=True, track_visibility='onchange', default='draft',compute='get_state')
-    uom_id = fields.Many2one(
-        'uom.uom', 'Unit of Measure ')
+    do_load_weight = fields.Float(string='Load Weight')
+    do_tar_weight = fields.Float(string='Tar Weight')
+    do_net_weight = fields.Float(string='Net Weight',compute='_compute_net_weight',
+        store=True)
     incoterm_id = fields.Many2one('account.incoterms', "Mode of Transport")
     rate  = fields.Float('Rate per Kg',default=0.0,compute='get_rate',copy=True)
     freight_term = fields.Selection([('To Pay','To Pay'),('Paid','Paid')],('Freight Term'),readonly=False)
+    
+    @api.depends('do_load_weight', 'do_tar_weight')
+    def _compute_net_weight(self):
+        for rec in self:
+            rec.do_net_weight = rec.do_load_weight - rec.do_tar_weight
     
     @api.onchange('name','incoterm_id')
     def get_rate(self):
