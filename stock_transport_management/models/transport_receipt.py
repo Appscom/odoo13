@@ -80,7 +80,10 @@ class TransportReceipt(models.Model):
                 data = { 'picking_id':i.delivery_order.id,
                          'picking_date':i.transport_date,
                          'supplier_id':i.delivery_order.partner_id.id,
-                         'vehicle_id': i.id,                                             
+                         'vehicle_id': i.id,
+                         'do_load_weight':i.load_weight,
+                         'do_tar_weight':i.tane_weight,
+                         'do_net_weight':i.net_weight,
                        }   
                 obj = [(0,0,data)]
                 #print(i.vehicle_id.name)
