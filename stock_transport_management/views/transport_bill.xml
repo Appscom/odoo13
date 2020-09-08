@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="transport_bill_view_form">
+            <field name="name">transport bill</field>
+            <field name="model">transport.bill</field>
+            <field name="arch" type="xml">
+                 <form name="transport_bill_info" string="Transport Bill">
+                    <header>
+                    <button name="action_confirm"
+                            type="object"
+                            class="oe_highlight"
+                            string="Confirm"
+                            attrs="{'invisible': [('state', '=', 'ready')]}"
+                            icon="fa-check" />
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_colors='{"ready": "blue"}' />
+                </header>
+                    <sheet>
+                     
+                     <group col="4" colspan="4" >
+                        <!--<label for="paid"/>
+                        <div>
+                            <field name="paid"/>
+                        </div>-->
+                        <field name="bill_no"/>
+                        <field name="bill_date"/>
+                        <field name="ref_no"/>
+                        <field name="ref_date"/>
+                        <field name="transporter_id" />
+                     </group>
+                     <notebook>
+                       <page string="Item Description">
+                         <field name="bill_line_ids">
+                            <tree editable="bottom">
+                              <field name="picking_id" width="100px"/>
+                              <field name="picking_date" width="200px"/> 
+                              <field name="supplier_id"/>
+                              <field name="lr_no"/>
+                              <field name="lr_amt"/>
+                              
+                              <field name="other_charge"/>
+                              <field name="tax_ids" widget="many2many_tags"/>
+                              <field invisible="1" name="tax_amount"/>
+                             
+                              <field name="amount" nolabel="1" widget="monetary"/>
+                           
+                              
+                             
+                            </tree>
+                         </field>
+                         <group class="oe_subtotal_footer oe_right">
+                                <div >
+                                    <label for="amount_total1"/>
+                                </div>
+                                <field name="amount_total1" nolabel="1" widget="monetary"/>
+                            </group>
+                         
+                         
+                        
+                       </page>
+                     </notebook>
+                      </sheet>
+                 </form>
+            </field>
+         </record>
+         <record model="ir.ui.view" id="transport_bill_view_tree">
+            <field name="name">transport bill</field>
+            <field name="model">transport.bill</field>
+            <field name="arch" type="xml">
+                 <tree name="transport_bill_info" string="Transport Bill">
+                      <field name="bill_no"/>
+                       
+                 </tree>
+            </field>
+         </record>
+         <record model="ir.actions.act_window" id="transport_bill_action">
+            <field name="name">Transport Bill</field>
+            <field name="res_model">transport.bill</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>     
+        </record>
+
+        
+
+        <menuitem id="transporter_root" name="Transporter Details"  parent="purchase.menu_purchase_root"/>
+        <menuitem id="transporter_bill_menu" name="Transport Bill"  parent="transporter_root" action="transport_bill_action" sequence="4"/>
+
+
+    <!--    <record model="ir.ui.view" id="receipt_line_form_view">
+        <field name="name">Receipt Lines</field>
+        <field name="model">receipt.line</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <group>
+                       <field name="picking_id" />
+                       <field name="picking_date"/> 
+                       <field name="supplier_id"/>
+                       <field name="load_weight"/>
+                       <field name="tane_weight"/>
+                       <field name="net_weight"/>
+                       <field name="rate"/>
+                       <field name="freight"/>                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+        </record>
+
+        <record id="receipt_line_tree_view" model="ir.ui.view">
+            <field name="name">Receipt Lines</field>
+            <field name="model">receipt.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                       <field name="picking_id" />
+                       <field name="picking_date" /> 
+                       <field name="supplier_id"/>
+                       <field name="load_weight"/>
+                       <field name="tane_weight"/>
+                       <field name="net_weight"/>
+                       <field name="rate"/>
+                       <field name="freight"/>    
+                    
+                </tree>
+            </field>
+        </record>
+
+        <record id="receipt_line_action" model="ir.actions.act_window">
+            <field name="name">Receipt Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">receipt.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="receipt_line_tree_view"/>
+            
+        </record>-->
+
+
+    </data>
+</odoo>
