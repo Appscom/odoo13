@@ -8,7 +8,7 @@
 def post_init_hook(cr, registry):
     """ Fill unrevisioned name of all existent purchases """
     query = """
-        UPDATE quality_point SET unrevisioned_name=name
+        UPDATE qc_test SET unrevisioned_name=name
         WHERE unrevisioned_name IS NULL;
     """
     cr.execute(query)

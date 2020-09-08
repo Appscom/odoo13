@@ -3,16 +3,16 @@
 from odoo import _, api, fields, models
 
 
-class QualityPoint(models.Model):
-    _inherit = "quality.point"
+class QcTest(models.Model):
+    _inherit = "qc.test"
 
     current_revision_id = fields.Many2one(
-        comodel_name='quality.point',
+        comodel_name='qc.test',
         string='Current revision',
         readonly=True,
     )
     old_revision_ids = fields.One2many(
-        comodel_name='quality.point',
+        comodel_name='qc.test',
         inverse_name='current_revision_id',
         string='Old revisions',
         readonly=True,
@@ -68,6 +68,6 @@ class QualityPoint(models.Model):
         if 'unrevisioned_name' not in values:
             if values.get('name', '/') == '/':
                 seq = self.env['ir.sequence']
-                values['name'] = seq.next_by_code('quality.point') or '/'
+                values['name'] = seq.next_by_code('qc.test') or '/'
             values['unrevisioned_name'] = values['name']
-        return super(QualityPoint, self).create(values)
+        return super(QcTest, self).create(values)
