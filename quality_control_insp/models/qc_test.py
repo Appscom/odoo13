@@ -26,7 +26,7 @@ class QcTest(models.Model):
             self.object_id = False
 
     active = fields.Boolean('Active', default=True)
-    name = fields.Char("Sequence Number", required=True, copy=False, index=True,default =lambda self: _('New'))
+    name = fields.Char("Sequence Number", required=True)
     test_lines = fields.One2many(
         comodel_name='qc.test.question', inverse_name='test',
         string='Questions', copy=True)
@@ -46,11 +46,11 @@ class QcTest(models.Model):
             'qc.test'))
 
     ## Auto sequence
-    @api.model
-    def create (self,vals):
-        if vals:
-            vals['name'] = self.env['ir.sequence'].next_by_code('qc.test') or _('New')
-        return super(QcTest,self).create(vals)
+   # @api.model
+    #def create (self,vals):
+     #   if vals:
+      #      vals['name'] = self.env['ir.sequence'].next_by_code('qc.test') or _('New')
+       # return super(QcTest,self).create(vals)
 
 
 class QcTestQuestion(models.Model):
