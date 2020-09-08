@@ -31,7 +31,9 @@
                             <field name="incoterm_id"/>
                             <field name="rate"/>
                             <field name="freight_term"/>
-                            
+                            <field name="do_load_weight"/>
+                            <field name="do_tar_weight"/>
+                            <field name="do_net_weight"/>
                         </group>
                     </group>
                 </sheet>
@@ -53,6 +55,9 @@
                     <field name="incoterm_id"/>
                     <field name="vehicle_no"/>
                     <field name="no_parcels"/>
+                    <field name="do_load_weight"/>
+                    <field name="do_tar_weight"/>
+                    <field name="do_net_weight"/>
                    <!-- <field name="uom_id"/>-->
                     
                 </tree>
