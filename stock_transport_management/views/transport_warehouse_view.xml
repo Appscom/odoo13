@@ -9,11 +9,12 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="transportation_name"/>
                     <field name="no_parcels"/>
-                    
+                    <field name="freight_term" invisible="True"/>
                 </xpath>
                  <notebook position="inside">
                      <page string="Transportation Details">
-                         <field name="transportation_details"/>
+                         <field name="transportation_details" readonly="False" />
+                         
                      </page>
                  </notebook>
              </field>

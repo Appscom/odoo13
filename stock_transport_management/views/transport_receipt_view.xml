@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="transport_receipt_view_form">
+            <field name="name">transport receipt</field>
+            <field name="model">transport.receipt</field>
+            <field name="arch" type="xml">
+                 <form name="transport_receipt_info" string="Transport Receipts">
+                    <header>
+                    <button name="action_confirm"
+                            type="object"
+                            class="oe_highlight"
+                            string="Confirm"
+                            attrs="{'invisible': [('state', '=', 'ready')]}"
+                            icon="fa-check" />
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_colors='{"ready": "blue"}' />
+                </header>
+                    <sheet>
+                     <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                     <group col="4" colspan="4" >
+                        <label for="paid"/>
+                        <div>
+                            <field name="paid"/>
+                        </div>
+                        <field name="lr_date"/>
+                        <field name="lr_no" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="incoterm_id"/>
+                        
+                        <field name="transporter_id" />
+                     </group>
+                     <notebook>
+                       <page string="Item Description">
+                         <field name="receipt_line_ids">
+                            <tree editable="bottom" create="false">
+                              <field name="picking_id" width="100px"/>
+                              <field name="picking_date" width="200px"/> 
+                              <field name="supplier_id"/>
+                              <field name="load_weight"/>
+                              <field name="tane_weight"/>
+                              <field name="net_weight"/>
+                              <field name="rate"/>
+                              <field name="freight"/>
+                            </tree>
+                         </field>
+                         <group class="oe_subtotal_footer oe_right">
+                                <div >
+                                    <label for="amount"/>
+                                </div>
+                                <field name="amount" nolabel="1" widget="monetary"/>
+                            </group>
+                         <group>
+                           <field name="lr_charge" />
+                           <field name="loading_unloading_charge"/>
+                           <field name="other_charge"/>
+                          
+                         </group>
+                         <group ><field name="reason" class="oe_inline" placeholder="Reason ..."/></group>
+                       </page>
+                     </notebook>
+                      </sheet>
+                 </form>
+            </field>
+         </record>
+         <record model="ir.ui.view" id="transport_receipt_view_tree">
+            <field name="name">transport receipt</field>
+            <field name="model">transport.receipt</field>
+            <field name="arch" type="xml">
+                 <tree name="transport_receipt_info" string="Transport Receipts">
+                      <field name="name"/>
+                       
+                 </tree>
+            </field>
+         </record>
+         <record model="ir.actions.act_window" id="transport_receipt_action">
+            <field name="name">Transport Receipt</field>
+            <field name="res_model">transport.receipt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>     
+        </record>
+
+        <record id="purchase_order_inherit_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                  <xpath expr="//field[@name='partner_ref']" position="after">
+                    <xpath expr="//field[@name='incoterm_id']" position="move"/>
+                  </xpath>
+                  <xpath expr="//field[@name='incoterm_id']" position="attributes">
+                    <attribute name="string">Mode of Transport</attribute>
+                  </xpath>
+            </field>
+         </record>
+        
+
+        <menuitem id="transporter_root" name="Transporter Details"  parent="purchase.menu_purchase_root" groups="base.group_user"/>
+        <menuitem id="transporter_receipt_menu" name="Transport Receipts"  parent="transporter_root" action="transport_receipt_action" sequence="2"/>
+
+
+    <!--    <record model="ir.ui.view" id="receipt_line_form_view">
+        <field name="name">Receipt Lines</field>
+        <field name="model">receipt.line</field>
+        <field name="arch" type="xml">
+            <form string="Vehicle">
+                <sheet>
+                    <group>
+                       <field name="picking_id" />
+                       <field name="picking_date"/> 
+                       <field name="supplier_id"/>
+                       <field name="load_weight"/>
+                       <field name="tane_weight"/>
+                       <field name="net_weight"/>
+                       <field name="rate"/>
+                       <field name="freight"/>                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+        </record>
+
+        <record id="receipt_line_tree_view" model="ir.ui.view">
+            <field name="name">Receipt Lines</field>
+            <field name="model">receipt.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                       <field name="picking_id" />
+                       <field name="picking_date" /> 
+                       <field name="supplier_id"/>
+                       <field name="load_weight"/>
+                       <field name="tane_weight"/>
+                       <field name="net_weight"/>
+                       <field name="rate"/>
+                       <field name="freight"/>    
+                    
+                </tree>
+            </field>
+        </record>
+
+        <record id="receipt_line_action" model="ir.actions.act_window">
+            <field name="name">Receipt Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">receipt.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="receipt_line_tree_view"/>
+            
+        </record>-->
+
+
+    </data>
+</odoo>

@@ -26,7 +26,7 @@ class VehicleCreation(models.Model):
 
     name = fields.Char(string="Vehicle Name", required=True)
     freight_term = fields.Selection([('To Pay','To Pay'),('Paid','Paid')],('Freight Term'))
-    supplier_id = fields.Many2one('res.partner', string="Supplier Name", required=True)
+    supplier_id = fields.Many2one('res.partner', string="Transporter Name", required=True)
     vehicle_image = fields.Binary(string='Image', store=True, attachment=True)
     # licence_plate = fields.Char(string="Licence Plate", required=True)
     mob_no = fields.Char(string="Mobile Number")
@@ -40,7 +40,7 @@ class VehicleCreation(models.Model):
         'tms.waybill.line', 'waybill_id', string="Transportable")
     amount_total = fields.Float(
         compute='_amount_all',
-        string='Total')
+        string='Total',digits = (12,2))
         
     @api.depends()
     def _amount_all(self):
@@ -69,8 +69,7 @@ class TmsWaybillLine(models.Model):
         'sale.vehicle','WayBill'
         )
     name = fields.Char('Description')
-    transportable_uom_id = fields.Many2one(
-        'uom.uom', 'Freight Type')
+    incoterm_id = fields.Many2one('account.incoterms', "Mode of Transport")
     #product_qty = fields.Float(
         #compute='_compute_transportable_product',
      #   string='Qty')
@@ -96,9 +95,9 @@ class TmsWaybillLine(models.Model):
         compute='_compute_amount_total',
         string='Total', store=True)
     lr_rate = fields.Float(
-        default=0.0,compute='_compute_rate', string='LR Rate (Kg)')
+        default=0.0,compute='_compute_rate', string='LR Rate (Kg)',digits = (12,2))
     rate = fields.Float(
-        default=0.0, string='Rate (Kg)')
+        default=0.0, string='Rate (Kg)',digits = (12,2))
     price_subtotal = fields.Float(
         #compute='_compute_amount_line',
         string='Subtotal')
@@ -107,12 +106,11 @@ class TmsWaybillLine(models.Model):
     @api.depends()
     def _compute_rate(self):
         for rec in self:
-            if (rec.product_value and rec.product_weight) > 0 and rec.transportable_uom_id.name == 'LCV':
-                if rec.transportable_uom_id.name == 'LCV':
+            if (rec.product_value and rec.product_weight) > 0 and rec.incoterm_id.name == 'LCV':
+                if rec.incoterm_id.name == 'LCV':
                     rec.lr_rate = rec.product_value / rec.product_weight
                     #print(rec.rate)
             else:
                 rec.lr_rate =0
-                
             
     

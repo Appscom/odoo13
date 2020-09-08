@@ -22,4 +22,5 @@ from . import transport_vehicle
 from . import transport_vehicle_status
 from . import transport_sale_order
 from . import transport_warehouse
+from . import transport_receipt
 #from . import gate_vehicle

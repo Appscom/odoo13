@@ -7,12 +7,12 @@
         <field name="arch" type="xml">
             <form string="Vehicle">
                 <header>
-                    <button name="action_reshedule" states="cancel" string="Reshedule" type="object" class="btn-primary"/>
+                  <!--  <button name="action_reshedule" states="cancel" string="Reshedule" type="object" class="btn-primary"/>
                     <button name="start_action" states="draft" string="Start" type="object" class="btn-primary"/>
                     <button name="action_cancel" states="draft" type="object" string="Cancel"/>
                     <button name="action_waiting" states="start" type="object" string="Waiting"/>
-                    <button name="action_done" states="draft,start,waiting" type="object" string="Done"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,start,waiting,cancel,done" readonly="1"/>
+                    <button name="action_done" states="draft,start,waiting" type="object" string="Done"/>-->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,cancel,done" readonly="1"/>
                 </header>
                 <sheet>
                     <group>
@@ -27,7 +27,10 @@
                         <group>
                             <field name="transport_date"/>
                             <field name="no_parcels"/>
-                            <field name="uom_id"/>
+                          <!--  <field name="uom_id"/> -->
+                            <field name="incoterm_id"/>
+                            <field name="rate"/>
+                            <field name="freight_term"/>
                             
                         </group>
                     </group>
@@ -40,16 +43,17 @@
             <field name="name">Vehicle</field>
             <field name="model">vehicle.status</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false" delete="false">
                     <field name="name"/>
                     <field name="delivery_order"/>
                     <field name="purchase_order"/>
                     <field name="transport_date"/>
                     <field name="g_lr_no"/>
                     <field name="g_lr_date"/>
+                    <field name="incoterm_id"/>
                     <field name="vehicle_no"/>
                     <field name="no_parcels"/>
-                    <field name="uom_id"/>
+                   <!-- <field name="uom_id"/>-->
                     
                 </tree>
             </field>
@@ -69,7 +73,7 @@
             </field>
         </record>
 
-        <menuitem id="main_transportation_vehicle_status_menu" name="Transportation Details"  parent="purchase.menu_purchase_config" action="vehicle_status_action" sequence="25"/>
+        <menuitem id="main_transportation_vehicle_status_menu" name="Transportation Details"  parent="purchase.menu_purchase_config" action="vehicle_status_action" sequence="25" groups="base.group_user"/>
 
     </data>
 </odoo>

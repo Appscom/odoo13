@@ -15,13 +15,14 @@
         'views/transport_vehicle_status_view.xml',
         'views/transportation_sale_order_view.xml',
         'views/transport_warehouse_view.xml',
-        #'views/gate_view.xml',
+        'views/transport_receipt_view.xml',
+        'data/ir_sequence_receipt.xml',
         #'views/transport_wizard_view.xml',
         #'views/transport_report.xml',
     ],
     
     'license': 'AGPL-3',
     'installable': True,
-    #'auto_install': False,
-    #'application': False,
+    'auto_install': False,
+    'application': False,
 }
