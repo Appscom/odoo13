@@ -2,7 +2,7 @@
 
 from odoo import models, api
 
-class PurchaseCUstomReport(models.AbstractModel):
+class PurchaseCustomReport(models.AbstractModel):
 
     _name = 'report.po_custom_report.report_purchaseorder'
     
@@ -11,11 +11,16 @@ class PurchaseCUstomReport(models.AbstractModel):
     def _get_report_values(self, docids, data=None):
         report_model = self.env['ir.actions.report']._get_report_from_name('po_custom_report.report_purchaseorder')
         obj = self.env["purchase.order"].browse(docids)
-        quality_obj = self.env["quality.check"].search([('purchase_id', '=', obj.name)])
+        quality_obj = self.env["qc.inspection"].search([('picking_id.purchase_id', '=', obj.name)])
+        insp_line = quality_obj.inspection_lines
         order_lines = obj.order_line
         for i in quality_obj:
             print(i.name)
             rec = i
+            for line in i.inspection_lines:
+                print(line.name)
+                val = line
+            
         
         
         #for i in order_lines:
@@ -27,4 +32,5 @@ class PurchaseCUstomReport(models.AbstractModel):
             'docs':obj,
             'doc_model':report_model.model,
             'quality': quality_obj, 
+            'val':val,
             }
