@@ -10,7 +10,7 @@
     "data": [
         'report_views.xml',
         'report_purchaseorder.xml',
-        'views.xml',
+        #'views.xml',
     ],
     
     "installable" : True,
