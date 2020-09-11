@@ -10,9 +10,9 @@
                 <xpath expr="//field[@name='date_approve']" position="after">
                     <field name="transportation_name"/>
                     <field name="freight_term"/>
-                    <field name="g_lr_no"/>
+                    <!--<field name="g_lr_no"/>
                     <field name="g_lr_date"/>
-                    <field name="vehicle_no"/>
+                    <field name="vehicle_no"/>-->
                 </xpath>
              </field>
         </record>
