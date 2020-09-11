@@ -11,9 +11,9 @@
     "category": "Quality control",
     "license": "AGPL-3",
     "summary": "Generic infrastructure for quality tests.",
-    "author": "OdooMRP team, "
-              "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/manufacture/tree/12.0/quality_control",
+   # "author": "OdooMRP team, "
+    #          "Odoo Community Association (OCA)",
+    #"website": "https://github.com/OCA/manufacture/tree/12.0/quality_control",
     "depends": [
         "product",
     ],
