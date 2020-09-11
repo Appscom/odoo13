@@ -24,7 +24,4 @@ To use this functionality, you need to:
 #. You can also print reports of every transportation.(Sales > Reports > Transportation Reports)
 
 
-Credits
-=======
-Developer: Saritha @ cybrosys
 
