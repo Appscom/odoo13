@@ -11,6 +11,7 @@
     'depends': ['base', 'purchase', 'stock'],
     'data': [
         'security/ir.model.access.csv',
+        'security/transport_security.xml',
         'views/transport_vehicle_view.xml',
         'views/transport_vehicle_status_view.xml',
         'views/transportation_sale_order_view.xml',
