@@ -6,9 +6,9 @@
     'summary': 'Add warranty date to stock production lot',
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
-    'author': 'Open Source Integrators, Odoo Community Association (OCA)',
+    #'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'category': 'Stock',
-    'website': 'https://github.com/OCA/rma',
+    #'website': 'https://github.com/OCA/rma',
     'depends': [
         'product_warranty',
         'stock',
