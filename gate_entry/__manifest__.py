@@ -16,6 +16,8 @@
         'report/gatein_pass_template.xml',
         'report/gateout_pass_template.xml',
         'report/gate_pass_report.xml',
+        'security/gate_security.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [],
     #'images': ['static/description/banner.png'],
