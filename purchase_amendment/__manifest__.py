@@ -11,10 +11,10 @@ But this module allows the user can do modify / amend on confirmed  orders. Once
 In the form view, a new tab is added that lists the previous revisions, with the date they were made obsolete and the user who performed the action.
 The old revisions/amendments of a purchase order are flagged as inactive, so they don't clutter up searches.""",
     'category': 'Purchase',
-    'author': 'PPTS [India] Pvt.Ltd.',
-    'website': 'https://www.pptssolutions.com',
+    #'author': 'PPTS [India] Pvt.Ltd.',
+    #'website': 'https://www.pptssolutions.com',
     'license': 'LGPL-3',
-    'support': 'business@pptservices.com',
+    #'support': 'business@pptservices.com',
     'depends' : ['base_setup', 'purchase'],
     'data': ['views/purchase_views.xml',
              'security/ir.model.access.csv',
@@ -22,5 +22,5 @@ The old revisions/amendments of a purchase order are flagged as inactive, so the
     'installable': True,
     'application': True,
     'auto_install': False,
-    'images': ['static/description/banner.png'],
+    #'images': ['static/description/banner.png'],
 }
