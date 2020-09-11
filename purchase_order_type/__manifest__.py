@@ -4,13 +4,13 @@
 {
     'name': 'Purchase Order Type',
     'version': '12.0.1.0.0',
-    'author': 'Camptocamp,Odoo Community Association (OCA)',
+    #'author': 'Camptocamp,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Purchase Management',
     'depends': [
         'purchase','account','stock','purchase_stock',
     ],
-    'website': 'https://github.com/OCA/purchase-workflow',
+    #'website': 'https://github.com/OCA/purchase-workflow',
     'data': [
         'security/ir.model.access.csv',
         'views/view_purchase_order_type.xml',
