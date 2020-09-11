@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gate_in_user,access_gate_in_user,model_gate_in,gate_entry.gate_user,1,1,1,1
+access_gate_out_user,access_gate_out_user,model_gate_out,gate_entry.gate_user,1,1,1,1
+access_gate_in_stock_user,access_gate_in_stock_user,model_stock_move_inherit,gate_entry.gate_user,1,1,1,1
+access_gate_out_stock_user,access_gate_out_stock_user,model_stock_move_inherit_out,gate_entry.gate_user,1,1,1,1
