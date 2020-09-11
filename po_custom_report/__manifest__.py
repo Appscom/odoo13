@@ -5,7 +5,7 @@
     "summary": " ",
     "description": """ """,
     "version":"13.0.2",
-    "depends" : ["base","purchase", "quality","quality_control","purchase_stock",],
+    "depends" : ["base","purchase", "quality_control_insp","quality_control_stock","purchase_stock",],
     "application" : False,
     "data": [
         'report_views.xml',
