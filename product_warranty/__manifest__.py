@@ -5,8 +5,6 @@
     'name': 'Product Warranty',
     'version': '12.0.1.0.0',
     'category': 'Generic Modules/Product',
-    'author': 'Akretion, Vauxoo, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/rma',
     'license': 'AGPL-3',
     'depends': [
         'sale_management',
