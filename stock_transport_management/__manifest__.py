@@ -10,7 +10,7 @@
     'category': 'Warehouse',
     'depends': ['base', 'purchase', 'stock'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'security/transport_security.xml',
         'views/transport_vehicle_view.xml',
         'views/transport_vehicle_status_view.xml',
