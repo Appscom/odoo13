@@ -34,9 +34,9 @@
                        <page string="Item Description">
                          <field name="bill_line_ids">
                             <tree editable="bottom">
-                              <field name="picking_id" width="100px"/>
+                              <!--<field name="picking_id" width="100px"/>
                               <field name="picking_date" width="200px"/> 
-                              <field name="supplier_id"/>
+                              <field name="supplier_id"/>-->
                               <field name="lr_no"/>
                               <field name="lr_amt"/>
                               
