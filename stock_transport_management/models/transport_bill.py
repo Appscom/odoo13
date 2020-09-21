@@ -20,7 +20,7 @@ class TransportBill(models.Model):
     ref_date = fields.Date("Ref Date")
     amount_total1 = fields.Float(
         compute='_compute_amount_total',
-        string='Total', store=True)
+        string='Total',default=0.0,digits = (12,2))
     
    
     amount = fields.Float(
@@ -42,18 +42,18 @@ class TransportBill(models.Model):
             
     
     ##total amount
-    def _amount_all(self):
+    def _compute_amount_total(self):
         for rec in self:
             temp = 0.0
-            if rec.receipt_line_ids:
-                for line in rec.receipt_line_ids:
-                    if line.freight > 0:
-                        temp += line.freight
+            if rec.bill_line_ids:
+                for line in rec.bill_line_ids:
+                    if line.amount > 0:
+                        temp += line.amount
                     else:
                         temp=0
                 
                     rec.update({
-                        'amount': temp,
+                        'amount_total1': temp,
                     })
             else:
                 self.amount = 0         
@@ -70,24 +70,21 @@ class TransportBill(models.Model):
         r = []
         obj = []
         print ('start')
-        if  self.lr_no:
-            res = self.env['vehicle.status'].search([('g_lr_no', '=' , self.lr_no),('incoterm_id', '=' , self.incoterm_id.name),('freight_term','=','Paid')])
+        if  self.transporter_id:
+            print ('start2')
+            res = self.env['transport.receipt'].search([('transporter_id', '=' , self.transporter_id.id)])
             for i in res:
-                print(i.delivery_order.name)
-                data = { 'picking_id':i.delivery_order.id,
-                         'picking_date':i.transport_date,
-                         'supplier_id':i.delivery_order.partner_id.id,
-                         'vehicle_id': i.id,                                             
+                data = { 'lr_no': i.lr_no,
+                         'lr_amt':i.amount,
                        }   
                 obj = [(0,0,data)]
-                #print(i.vehicle_id.name)
-                self.write({'state': 'ready','receipt_line_ids': obj})  
-        
+                self.write({'state': 'ready','bill_line_ids': obj})
+            
 
         
 class ReceiptLines(models.Model):
     _name = "bill.line"
-    _description = 'Receipt Lines'
+    _description = 'Bill Lines'
     
     bill_line_id = fields.Many2one('transport.bill','Transport Bill')
     picking_id = fields.Many2one('stock.picking',"GRIN No.")
@@ -145,26 +142,3 @@ class ReceiptLines(models.Model):
                     rec.tax_amount += tax['amount']
             else:
                 rec.tax_amount = 0.0
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
-    
