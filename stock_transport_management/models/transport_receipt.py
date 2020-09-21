@@ -81,9 +81,9 @@ class TransportReceipt(models.Model):
                          'picking_date':i.transport_date,
                          'supplier_id':i.delivery_order.partner_id.id,
                          'vehicle_id': i.id,
-                         'do_load_weight':i.load_weight,
-                         'do_tar_weight':i.tane_weight,
-                         'do_net_weight':i.net_weight,
+                         'load_weight':i.do_load_weight,
+                         'tane_weight':i.do_tar_weight,
+                         'net_weight':i.do_net_weight,
                        }   
                 obj = [(0,0,data)]
                 #print(i.vehicle_id.name)
