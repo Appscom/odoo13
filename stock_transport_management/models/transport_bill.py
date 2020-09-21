@@ -56,7 +56,7 @@ class TransportBill(models.Model):
                         'amount_total1': temp,
                     })
             else:
-                self.amount = 0         
+                self.amount_total1 = 0         
     
     ## Auto sequence
     @api.model
