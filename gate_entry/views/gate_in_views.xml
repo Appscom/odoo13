@@ -99,7 +99,7 @@
             </field>
          </record>
 
-        <menuitem id="gate" name="Gate Entry" groups="gate_user"/>
+        <menuitem id="gate" name="Gate Entry"/>
         <menuitem id="gate_root" name="Gate Entries" parent="gate"/>
         <menuitem id="gate_in" name="Gate In" parent="gate_root"
                   action="gate_in_action" sequence="3"/>
