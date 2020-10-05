@@ -31,7 +31,7 @@ class StockPicking(models.Model):
             todo = False
             fail = False
             for check in picking.move_lines:
-                print(check.product_id.qc_triggers)
+               # print(check.product_id.qc_triggers)
                 if check.product_id.qc_triggers:
                     todo = True
                 else:
