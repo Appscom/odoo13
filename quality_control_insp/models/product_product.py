@@ -12,5 +12,5 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     qc_triggers = fields.One2many(
-        comodel_name="qc.trigger.product_line", inverse_name="product",
+        comodel_name="qc.trigger.product_line", inverse_name="product", 
         string="Quality control triggers",related ="product_tmpl_id.qc_triggers")
